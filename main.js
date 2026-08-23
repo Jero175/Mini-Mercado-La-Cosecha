@@ -70,3 +70,10 @@ document.addEventListener('DOMContentLoaded', function () {
     secciones.forEach((sec) => observadorNav.observe(sec));
   }
 });
+
+
+  // Botón de volver arriba
+  const volver = document.createElement('button'); volver.className='volver-arriba'; volver.innerHTML='↑'; volver.setAttribute('aria-label','Volver arriba'); document.body.appendChild(volver);
+  volver.style.cssText='position:fixed;right:1.5rem;bottom:6rem;width:44px;height:44px;border:0;border-radius:14px;background:#fff;color:#0f3d63;box-shadow:0 12px 30px rgba(15,61,99,.18);font-size:1.4rem;cursor:pointer;opacity:0;transform:translateY(12px);pointer-events:none;transition:.25s;z-index:25';
+  window.addEventListener('scroll',()=>{const show=window.scrollY>500;volver.style.opacity=show?'1':'0';volver.style.transform=show?'translateY(0)':'translateY(12px)';volver.style.pointerEvents=show?'auto':'none'},{passive:true});
+  volver.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));

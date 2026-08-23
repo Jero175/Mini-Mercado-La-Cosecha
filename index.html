@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css" />
+<link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
@@ -39,7 +39,7 @@
   <section class="hero" id="inicio">
     <div class="mancha mancha-1"></div>
     <div class="mancha mancha-2"></div>
-    <div class="contenedor hero-grid">
+    <div class="contenedor hero-grid reveal visible">
       <div>
         <span class="eyebrow">🌤️ Villanueva</span>
         <h1>Lo fresco de cada día, a la puerta de tu casa</h1>
@@ -49,8 +49,10 @@
           <a class="btn btn-secundario" href="#contacto">Contáctanos</a>
         </div>
       </div>
-      <div class="hero-foto">
-        <img src="img/fachada.jpg" alt="Fachada del Mini Mercado La Cosecha en Villanueva" />
+      <div class="hero-foto hero-visual" aria-label="Mini Mercado La Cosecha">
+        <div class="hero-marca-flotante">🌿 <span>Desde Villanueva</span></div>
+        <div class="hero-ilustracion">🏪<span>MINI MERCADO<br><b>LA COSECHA</b></span></div>
+        <div class="hero-estadistica"><b>+10 años</b><span>sirviendo al barrio</span></div>
       </div>
     </div>
   </section>
@@ -59,7 +61,7 @@
   <section class="seccion" id="nosotros">
     <div class="contenedor sobre-grid">
       <div class="foto-redonda reveal">
-        <img src="img/frutas-verduras.jpg" alt="Sección de frutas y verduras del Mini Mercado La Cosecha" />
+        <img src="img/frutas-verduras.svg" alt="Sección de frutas y verduras del Mini Mercado La Cosecha" />
       </div>
       <div class="reveal">
         <h2>Quiénes somos</h2>
@@ -144,15 +146,15 @@
       </div>
       <div class="grid-galeria">
         <div class="foto-galeria reveal">
-          <img src="img/fachada.jpg" alt="Fachada del local con el letrero de Mini Mercado La Cosecha" />
+          <img src="img/fachada.svg" alt="Fachada del local con el letrero de Mini Mercado La Cosecha" />
           <span class="pie-foto">Fachada del local</span>
         </div>
         <div class="foto-galeria reveal">
-          <img src="img/interior-abarrotes.jpg" alt="Estantes de abarrotes dentro del mercado" />
+          <img src="img/interior-abarrotes.svg" alt="Estantes de abarrotes dentro del mercado" />
           <span class="pie-foto">Sección de abarrotes</span>
         </div>
         <div class="foto-galeria reveal">
-          <img src="img/frutas-verduras.jpg" alt="Exhibición de frutas y verduras frescas con precios" />
+          <img src="img/frutas-verduras.svg" alt="Exhibición de frutas y verduras frescas con precios" />
           <span class="pie-foto">Frutas y verduras frescas</span>
         </div>
       </div>
@@ -174,6 +176,9 @@
     </div>
   </section>
 
+  <section class="cta-final reveal">
+    <div class="contenedor cta-contenido"><div><span class="eyebrow">🛍️ Fácil y rápido</span><h2>¿Listo para hacer tu mercado?</h2><p>Escríbenos por WhatsApp y te ayudamos con tu pedido.</p></div><a class="btn btn-primario" href="https://wa.me/573011983791" target="_blank" rel="noopener">🟢 Pedir ahora</a></div>
+  </section>
 </main>
 
 <footer class="pie">
@@ -193,6 +198,6 @@
 
 <a class="whatsapp-flotante" href="https://wa.me/573011983791" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">💬</a>
 
-<script src="js/main.js"></script>
+<script src="main.js"></script>
 </body>
 </html>
