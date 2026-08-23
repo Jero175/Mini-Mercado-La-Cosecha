@@ -22,6 +22,11 @@
 
 html { scroll-behavior: smooth; }
 
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
+
 body {
   margin: 0;
   background: var(--azul-hielo);
@@ -54,13 +59,20 @@ img { max-width: 100%; display: block; }
 .encabezado {
   position: sticky;
   top: 0;
-  z-index: 20;
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(6px);
-  border-bottom: 1px solid var(--borde);
+  z-index: 30;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid transparent;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.encabezado.con-sombra {
+  box-shadow: 0 6px 20px rgba(15, 61, 99, 0.08);
+  border-bottom-color: var(--borde);
 }
 
 .barra-nav {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -91,6 +103,7 @@ img { max-width: 100%; display: block; }
   justify-content: center;
   color: var(--blanco);
   font-size: 1.1rem;
+  animation: flotar 3.4s ease-in-out infinite;
 }
 
 .nav-enlaces {
@@ -103,14 +116,58 @@ img { max-width: 100%; display: block; }
 }
 
 .nav-enlaces a {
+  position: relative;
   text-decoration: none;
   color: var(--tinta);
-  border-bottom: 2px solid transparent;
-  padding-bottom: 2px;
-  transition: border-color 0.2s ease, color 0.2s ease;
+  padding-bottom: 4px;
+  transition: color 0.2s ease;
 }
 
-.nav-enlaces a:hover { border-color: var(--azul); color: var(--azul); }
+.nav-enlaces a::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--azul);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+.nav-enlaces a:hover { color: var(--azul); }
+.nav-enlaces a:hover::after,
+.nav-enlaces a.activo::after { transform: scaleX(1); }
+.nav-enlaces a.activo { color: var(--azul); }
+
+/* Botón menú móvil */
+.boton-menu {
+  display: none;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: var(--azul-claro);
+  border-radius: 12px;
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+}
+.boton-menu span {
+  position: absolute;
+  left: 9px;
+  width: 22px;
+  height: 2px;
+  background: var(--azul-oscuro);
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.2s ease, top 0.25s ease;
+}
+.boton-menu span:nth-child(1) { top: 14px; }
+.boton-menu span:nth-child(2) { top: 20px; }
+.boton-menu span:nth-child(3) { top: 26px; }
+.boton-menu.activo span:nth-child(1) { top: 20px; transform: rotate(45deg); }
+.boton-menu.activo span:nth-child(2) { opacity: 0; }
+.boton-menu.activo span:nth-child(3) { top: 20px; transform: rotate(-45deg); }
 
 .btn {
   display: inline-flex;
@@ -143,6 +200,44 @@ img { max-width: 100%; display: block; }
 }
 .btn-secundario:hover { background: var(--azul-claro); }
 
+/* ---------- Animaciones ---------- */
+
+@keyframes flotar {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes aparecer {
+  from { opacity: 0; transform: translateY(26px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulso {
+  0% { box-shadow: 0 0 0 0 rgba(29, 111, 184, 0.45); }
+  70% { box-shadow: 0 0 0 14px rgba(29, 111, 184, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(29, 111, 184, 0); }
+}
+
+@keyframes derivar {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(18px, -14px) scale(1.06); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); animation: none; }
+
+.grid-productos .reveal:nth-child(2) { transition-delay: 0.08s; }
+.grid-productos .reveal:nth-child(3) { transition-delay: 0.16s; }
+.grid-productos .reveal:nth-child(4) { transition-delay: 0.24s; }
+.grid-razones .reveal:nth-child(2) { transition-delay: 0.08s; }
+.grid-razones .reveal:nth-child(3) { transition-delay: 0.16s; }
+.grid-galeria .reveal:nth-child(2) { transition-delay: 0.08s; }
+.grid-galeria .reveal:nth-child(3) { transition-delay: 0.16s; }
+
 /* ---------- Hero ---------- */
 
 .hero {
@@ -151,6 +246,28 @@ img { max-width: 100%; display: block; }
   position: relative;
   overflow: hidden;
 }
+
+.hero .mancha {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(2px);
+  opacity: 0.5;
+  z-index: 0;
+  animation: derivar 9s ease-in-out infinite;
+}
+.hero .mancha-1 {
+  width: 220px; height: 220px;
+  top: -60px; right: 6%;
+  background: radial-gradient(circle, var(--azul-medio), transparent 70%);
+}
+.hero .mancha-2 {
+  width: 160px; height: 160px;
+  bottom: -30px; left: 2%;
+  background: radial-gradient(circle, var(--acento), transparent 70%);
+  animation-delay: 2.2s;
+}
+
+.hero-grid { position: relative; z-index: 1; }
 
 .hero-grid {
   display: grid;
@@ -172,16 +289,35 @@ img { max-width: 100%; display: block; }
   border-radius: 999px;
   margin-bottom: 1rem;
   box-shadow: var(--sombra-suave);
+  opacity: 0;
+  animation: aparecer 0.7s ease forwards;
 }
 
 .hero h1 {
   font-size: clamp(2rem, 4vw, 2.85rem);
   max-width: 13ch;
+  opacity: 0;
+  animation: aparecer 0.7s ease forwards;
+  animation-delay: 0.1s;
 }
 
-.hero-texto { font-size: 1.05rem; max-width: 42ch; }
+.hero-texto {
+  font-size: 1.05rem;
+  max-width: 42ch;
+  opacity: 0;
+  animation: aparecer 0.7s ease forwards;
+  animation-delay: 0.2s;
+}
 
-.hero-acciones { display: flex; gap: 0.9rem; flex-wrap: wrap; margin-top: 1.5rem; }
+.hero-acciones {
+  display: flex;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+  opacity: 0;
+  animation: aparecer 0.7s ease forwards;
+  animation-delay: 0.3s;
+}
 
 .hero-foto {
   border-radius: var(--radio);
@@ -189,8 +325,14 @@ img { max-width: 100%; display: block; }
   box-shadow: var(--sombra);
   border: 6px solid var(--blanco);
   aspect-ratio: 4 / 3;
+  opacity: 0;
+  animation: aparecer 0.8s ease forwards;
+  animation-delay: 0.25s;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
-.hero-foto img { width: 100%; height: 100%; object-fit: cover; }
+.hero-foto:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(15, 61, 99, 0.18); }
+.hero-foto img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+.hero-foto:hover img { transform: scale(1.05); }
 
 /* ---------- Secciones generales ---------- */
 
@@ -417,11 +559,58 @@ img { max-width: 100%; display: block; }
   text-align: center;
 }
 
+/* ---------- Botón flotante de WhatsApp ---------- */
+
+.whatsapp-flotante {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--azul-medio), var(--azul));
+  color: var(--blanco);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  text-decoration: none;
+  z-index: 40;
+  box-shadow: 0 10px 24px rgba(15, 61, 99, 0.28);
+  animation: pulso 2.6s ease-out infinite;
+  transition: transform 0.2s ease;
+}
+.whatsapp-flotante:hover { transform: scale(1.08); }
+
 /* ---------- Responsivo ---------- */
 
 @media (max-width: 780px) {
-  .nav-enlaces { display: none; }
+  .boton-menu { display: block; }
+
+  .nav-enlaces {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    background: var(--blanco);
+    border-bottom: 1px solid var(--borde);
+    box-shadow: 0 14px 24px rgba(15, 61, 99, 0.1);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+  .nav-enlaces.abierto { max-height: 260px; }
+  .nav-enlaces a {
+    display: block;
+    padding: 0.9rem 1.5rem;
+    border-bottom: 1px solid var(--borde);
+  }
+  .nav-enlaces a::after { display: none; }
+
   .hero-grid, .sobre-grid { grid-template-columns: 1fr; }
   .hero-foto { order: -1; }
   .contacto-tarjeta { padding: 1.8rem; }
+  .whatsapp-flotante { right: 14px; bottom: 14px; width: 52px; height: 52px; font-size: 1.3rem; }
 }

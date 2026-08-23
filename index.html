@@ -27,6 +27,9 @@
       </ul>
     </nav>
     <a class="btn btn-primario" href="https://wa.me/573011983791" target="_blank" rel="noopener">Pedir por WhatsApp</a>
+    <button class="boton-menu" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
@@ -34,6 +37,8 @@
 
   <!-- HERO -->
   <section class="hero" id="inicio">
+    <div class="mancha mancha-1"></div>
+    <div class="mancha mancha-2"></div>
     <div class="contenedor hero-grid">
       <div>
         <span class="eyebrow">🌤️ Villanueva</span>
@@ -53,10 +58,10 @@
   <!-- QUIÉNES SOMOS -->
   <section class="seccion" id="nosotros">
     <div class="contenedor sobre-grid">
-      <div class="foto-redonda">
+      <div class="foto-redonda reveal">
         <img src="img/frutas-verduras.jpg" alt="Sección de frutas y verduras del Mini Mercado La Cosecha" />
       </div>
-      <div>
+      <div class="reveal">
         <h2>Quiénes somos</h2>
         <p>Mini Mercado La Cosecha nació como un negocio familiar en Villanueva y desde entonces ha sido el mercado de confianza del barrio. Seleccionamos a diario productos frescos y mantenemos precios justos para que el mercado de la semana no le pese al bolsillo.</p>
         <p>Nos conocen por el trato cercano: aquí nos aprendemos el nombre de nuestros clientes y hasta lo que suelen llevar cada semana.</p>
@@ -71,30 +76,30 @@
   <!-- PRODUCTOS -->
   <section class="seccion seccion-alterna" id="productos">
     <div class="contenedor">
-      <div class="titulo-seccion">
+      <div class="titulo-seccion reveal">
         <h2>Lo que encuentras en la tienda</h2>
         <p>Un mercado completo, fresco y de temporada.</p>
       </div>
       <div class="grid-productos">
-        <div class="tarjeta-producto">
+        <div class="tarjeta-producto reveal">
           <span class="etiqueta-precio">Fresco</span>
           <div class="icono">🍅</div>
           <h3>Frutas y verduras</h3>
           <p>Seleccionadas cada mañana para llegar frescas a tu mesa.</p>
         </div>
-        <div class="tarjeta-producto">
+        <div class="tarjeta-producto reveal">
           <span class="etiqueta-precio">Diario</span>
           <div class="icono">🥛</div>
           <h3>Lácteos y carnes frías</h3>
           <p>Leche, quesos, embutidos y carnes frías de marcas reconocidas.</p>
         </div>
-        <div class="tarjeta-producto">
+        <div class="tarjeta-producto reveal">
           <span class="etiqueta-precio">Surtido</span>
           <div class="icono">🛒</div>
           <h3>Abarrotes y despensa</h3>
           <p>Arroz, granos, aceite, panela y todo lo básico para la cocina.</p>
         </div>
-        <div class="tarjeta-producto">
+        <div class="tarjeta-producto reveal">
           <span class="etiqueta-precio">Hogar</span>
           <div class="icono">🧼</div>
           <h3>Aseo del hogar</h3>
@@ -107,21 +112,21 @@
   <!-- POR QUÉ ELEGIRNOS -->
   <section class="seccion">
     <div class="contenedor">
-      <div class="titulo-seccion">
+      <div class="titulo-seccion reveal">
         <h2>Por qué elegirnos</h2>
       </div>
       <div class="grid-razones">
-        <div class="razon">
+        <div class="razon reveal">
           <div class="icono-grande">🚲</div>
           <h3>Domicilios rápidos</h3>
           <p>Llevamos tu mercado a la puerta de tu casa el mismo día.</p>
         </div>
-        <div class="razon">
+        <div class="razon reveal">
           <div class="icono-grande">💰</div>
           <h3>Precios justos</h3>
           <p>Mercado completo sin desbalancear el presupuesto familiar.</p>
         </div>
-        <div class="razon">
+        <div class="razon reveal">
           <div class="icono-grande">🤝</div>
           <h3>Atención cercana</h3>
           <p>Un negocio de barrio que conoce y cuida a sus clientes.</p>
@@ -133,20 +138,20 @@
   <!-- GALERÍA -->
   <section class="seccion seccion-alterna" id="galeria">
     <div class="contenedor">
-      <div class="titulo-seccion">
+      <div class="titulo-seccion reveal">
         <h2>Galería</h2>
         <p>Así se ve por dentro y por fuera nuestro mercado.</p>
       </div>
       <div class="grid-galeria">
-        <div class="foto-galeria">
+        <div class="foto-galeria reveal">
           <img src="img/fachada.jpg" alt="Fachada del local con el letrero de Mini Mercado La Cosecha" />
           <span class="pie-foto">Fachada del local</span>
         </div>
-        <div class="foto-galeria">
+        <div class="foto-galeria reveal">
           <img src="img/interior-abarrotes.jpg" alt="Estantes de abarrotes dentro del mercado" />
           <span class="pie-foto">Sección de abarrotes</span>
         </div>
-        <div class="foto-galeria">
+        <div class="foto-galeria reveal">
           <img src="img/frutas-verduras.jpg" alt="Exhibición de frutas y verduras frescas con precios" />
           <span class="pie-foto">Frutas y verduras frescas</span>
         </div>
@@ -157,7 +162,7 @@
   <!-- CONTACTO -->
   <section class="seccion" id="contacto">
     <div class="contenedor">
-      <div class="contacto-tarjeta">
+      <div class="contacto-tarjeta reveal">
         <h2>Hablemos</h2>
         <p>Escríbenos y te ayudamos con tu pedido o cualquier duda.</p>
         <ul class="lista-datos">
@@ -186,5 +191,8 @@
   <p class="pie-nota">Sitio realizado como proyecto escolar — Villanueva.</p>
 </footer>
 
+<a class="whatsapp-flotante" href="https://wa.me/573011983791" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">💬</a>
+
+<script src="js/main.js"></script>
 </body>
 </html>
